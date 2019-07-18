@@ -49,41 +49,6 @@ export class HomeComponent implements OnInit {
       this.filteredBanks = this.banksList 
       this.ngxService.stop()
     
-    /* .subscribe(data => {
-     
-      console.log(data);
-      this.banksList = data
-      this.listBanks = data
-      this.filteredBanks = this.banksList 
-      this.ngxService.stop()
-    }) */
-
-    /* this.ngxService.start()
-    if (this.banksList) {
-      this.ngxService.stop()
-      //return of(this.banksList);
-    } else if (this.observable) {
-      this.ngxService.stop()
-     // return this.observable;
-    } else {
-      this.observable = this.http.get("https://vast-shore-74260.herokuapp.com/banks?city=" + this.city, {
-        observe: 'response'
-      })
-      .pipe(map(response =>  {
-        this.observable = null;
-        if (response.status === 400) {
-          this.ngxService.stop()
-          //return 'Request failed.';
-        } else if (response.status === 200) {
-          this.ngxService.stop()
-          this.banksList = response.body;
-          this.listBanks = this.banksList
-          this.filteredBanks = this.banksList
-        }
-      },
-      this.ngxService.stop()))
-      
-    } */
   }
 
   filterList(){

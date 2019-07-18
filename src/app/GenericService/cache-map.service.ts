@@ -17,7 +17,7 @@ export class CacheMapService implements Cache  {
     put(req: HttpRequest<any>, res: HttpResponse<any>): void {
         const entry: CacheEntry = { url: req.urlWithParams, response: res, entryTime: Date.now() };
         this.cacheMap.set(req.urlWithParams, entry);
-        //this.deleteExpiredCache();
+        this.deleteExpiredCache();
     }
     private deleteExpiredCache() {
         this.cacheMap.forEach(entry => {
