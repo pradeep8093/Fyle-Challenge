@@ -1,0 +1,92 @@
+<div class="container page-section">
+  <div class="row">
+    <div class="col-md-4">
+      
+      <form >
+        <div>
+            <label>City</label>
+        </div>
+        <div>
+            <select [(ngModel)]="city" name="city" (change)="change($event.target.value)">
+              <option value="MUMBAI">Mumbai</option>
+              <option value="DELHI">Delhi</option>
+              <option value="CHENNAI">Chennai</option>
+              <option value="KOLKATA">Kolkata</option>
+              <option value="HYDERABAD">Hyderabad</option>
+            </select>
+        </div>
+      </form>
+
+    </div>
+
+    <div class="col-md-8">
+        <form>
+            <div class="form-inline">
+                Full text search: <input  type="text" name="filter" [(ngModel)]="filter" (keyup)=filterList()/>
+            </div>
+        </form>
+    </div>
+  </div>
+
+  <div class="row page-section">
+
+      <div class="pull-left">
+          <select [(ngModel)]="itemsPerPage" name="itemsPerPage" (change)="changePageSize($event.target.value)">
+              <option value="10">10</option>
+              <option value="25">25</option>
+              <option value="50">50</option>
+              <option value="100">100</option>
+          </select>
+      </div>
+      <div class="pull-right">
+        <button (click)="showFav()">{{btnText}}</button>
+      </div>
+
+  </div>
+
+  <div class="row page-section">
+
+      <ngx-ui-loader></ngx-ui-loader>
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+            <th>#</th>
+            <th>Bank Name</th>
+            <th>Branch</th>
+            <th>Address</th>
+            <th>City</th>
+            <th>District</th>
+            <th>State</th>
+            <th>IFSC</th>
+            <th>Favourites</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of filteredBanks | paginate: { itemsPerPage: itemsPerPage, currentPage: p }; let i = index">
+            <td>{{((p-1)*itemsPerPage)+i+1}}</td>
+            <td>{{item.bank_name}}</td>
+            <td>{{item.branch}}</td>
+            <td>{{item.address}}</td>
+            <td>{{item.city}}</td>   
+            <td>{{item.district}}</td>   
+            <td>{{item.state}}</td>
+            <td>{{item.ifsc}}</td>
+            <td><button *ngIf="!isFav(item.ifsc)" (click)="addToFav(item, i)">Add to Favourites</button></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="pull-left">
+        <select [(ngModel)]="itemsPerPage" name="itemsPerPage" (change)="changePageSize($event.target.value)">
+            <option value="10">10</option>
+            <option value="25">25</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+        </select>
+    </div>
+    <div class="pull-right">
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+  </div>
+</div>
