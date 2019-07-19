@@ -1,6 +1,7 @@
 {
-  "name": "myapp",
+  "name": "Fyle-Challenge",
   "version": "0.0.0",
+  "homepage": "https://pradeep8093.github.io/Fyle-Challenge/",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
